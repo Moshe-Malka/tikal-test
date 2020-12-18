@@ -28,3 +28,15 @@ pip install -r requirements.txt
 ```bash
 python3 app.py
 ```
+
+To send a message:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"sender": "<sender_name>", "recipient": "<recipient_name>", "message": "Hello!"}' http://127.0.0.1:5000/send
+```
+
+to receive all messages for a specific recipient:
+
+```bash
+curl POST -X GET http://127.0.0.1:5000/receive/<recipient_name>
+```
