@@ -1,10 +1,13 @@
-import json, os
 from datetime import datetime
 from uuid import uuid4
 from flask import Flask, abort, request, jsonify
 from collections import OrderedDict 
+import flask_monitoringdashboard as dashboard
 
 flask_app = Flask(__name__)
+dashboard.bind(flask_app)
+dashboard.config.init_from(file='config.cfg')
+
 messages = OrderedDict()
 """
 messages = {
@@ -59,3 +62,8 @@ if __name__ == '__main__':
     print("Starting...")
     flask_app.run(threaded=True, port=5000)
     
+# TODO:
+# 1) unit tests
+# 2) Flask for rapid prototyping. an unopinionated library.
+# 3) Monitoring: https://medium.com/flask-monitoringdashboard-turtorial/monitor-your-flask-web-application-automatically-with-flask-monitoring-dashboard-d8990676ce83#e43e
+# 4) Scalling - use Kubernetes
